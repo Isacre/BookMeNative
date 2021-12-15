@@ -1,15 +1,18 @@
 import React, { Component, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import Books from "../../Components/Books/index";
+import SearchBar from "../../Components/SearchBar";
 
 function Home() {
   const [HandleSelector, setHandleSelector] = useState(true);
+  const [Filter, setFilter] = useState("");
+
+  const [optionValue, setOptionValue] = useState("Mais Recentes");
   return (
     <View style={styles.component}>
       <Text style={styles.title}>
-        {" "}
-        SEUS
-        <br /> LIVROS{" "}
+        SEUS {"\n"}
+        LIVROS{" "}
       </Text>
 
       <View style={styles.selector}>
@@ -26,7 +29,16 @@ function Home() {
           Emprestados
         </Text>
       </View>
-      <Books Available={HandleSelector} />
+      <SearchBar
+        Filter={Filter}
+        setFilter={setFilter}
+        setOptionValue={setOptionValue}
+      />
+      <Books
+        Available={HandleSelector}
+        Filter={Filter}
+        optionValue={optionValue}
+      />
     </View>
   );
 }
@@ -36,15 +48,14 @@ export default Home;
 const styles = StyleSheet.create({
   component: {
     width: "90%",
-    marginTop: 30,
+    marginTop: 15,
   },
   title: {
     fontSize: 54,
-    lineHeight: 49,
     color: "#730202",
     fontWeight: "bold",
     letterSpacing: 0.5,
-    marginBottom: 30,
+    marginBottom: 20,
   },
   selector: {
     display: "flex",
@@ -52,6 +63,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "60%",
     margin: "auto",
+    marginBottom: 30,
+    alignSelf: "center",
   },
   available: {
     padding: 5,
@@ -64,7 +77,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 20,
     color: "#730202",
-    fontWeight: 600,
+    fontWeight: "600",
   },
   lended: {
     padding: 5,
@@ -77,6 +90,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 20,
     color: "#730202",
-    fontWeight: 600,
+    fontWeight: "600",
   },
 });

@@ -35,16 +35,15 @@ const styles = StyleSheet.create({
   component: {
     backgroundColor: "#730202",
     width: "100%",
-    height: "13vh",
+    height: 100,
   },
   content: {
     width: "90%",
     height: "100%",
-    margin: "auto",
     justifyContent: "space-between",
-
     display: "flex",
     flexDirection: "row",
+    alignSelf: "center",
   },
   logo: {
     display: "flex",
